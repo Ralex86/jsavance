@@ -1,19 +1,14 @@
 const express = require('express');
 const app = express();
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const port = process.env.PORT || 8080;
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080; 
-
-const MOVIES = require('./movies.js')
-
-app.get('/', (req, res) => {
-  res.json(MOVIES)
-})
-
+const routes = require('./routes/movies.routes.js');
+routes(app);
 
 app.listen(port, function() {
-  console.log(`listening on port: ${port}`)
-})
+  console.log(`listening on port: ${port}`);
+});
