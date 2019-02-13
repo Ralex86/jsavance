@@ -1,0 +1,22 @@
+{
+  "name": "jsavance",
+  "version": "1.0.0",
+  "description": "projet node vue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ralex86/jsavance.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ralex86/jsavance/issues"
+  },
+  "homepage": "https://github.com/Ralex86/jsavance#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
