@@ -3,18 +3,20 @@ module.exports = function(app) {
   const {Movies} = require('../controllers/movie.controller.js');
   var movies = new Movies();
 
-  // Create a new Customer
-  //app.post(`${baseUrl}`, movies.create);
+  //	Create a new Movie
+  //	curl -X POST -H "Content-Type: application/json" --data "{"id": 1, "title": "mymovie"}" http://localhost:8080/
 
-  // Retrieve all Customer
+  app.post(`${baseUrl}`, movies.create);
+
+  // Retrieve all Movie
   app.get(`${baseUrl}`, movies.findAll);
 
-  // Retrieve a single Customer by Id
-  //app.get(`${baseUrl}/:id`, movies.findOne);
+  // Retrieve a single Movie by Id
+  app.get(`${baseUrl}/:id`, movies.findOne);
 
-  //// Update a Customer with Id
+  // Update a Movie with Id
   //app.put(`${baseUrl}/:id`, movies.update);
 
-  //// Delete a Customer with Id
-  //app.delete(`${baseUrl}/:id`, movies.delete);
+  //// Delete a Movie with Id
+  app.delete(`${baseUrl}/:id`, movies.delete);
 };
