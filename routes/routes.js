@@ -18,7 +18,19 @@ module.exports = function(app) {
     await res.end(JSON.stringify(movie.ressource));
   });
 
+  app.post('/poster', async (req, res) => {
+    const {poster, ...rest} = JSON.parse(req.body.movie);
+    const filename = req.file.filename;
+    const params = {
+      poster: filename,
+      ...rest,
+    };
+    const movie = await movie_controller.update(params);
+    await res.end(JSON.stringify(movie.ressource));
+  });
+
   app.get(`${baseUrl}/movies`, async (req, res) => {
+    console.log('hey');
     const movies = await movie_controller.index();
     await res.end(movies.ressource);
   });
@@ -30,6 +42,7 @@ module.exports = function(app) {
   });
 
   app.put(`${baseUrl}/movies`, async (req, res) => {
+    console.log('put', req.body);
     const movie = await movie_controller.update(req.body);
     await res.end(JSON.stringify(movie.ressource));
   });

@@ -4,7 +4,8 @@
   "description": "projet node vue",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules/.bin/webpack --progress --hide-modules"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,24 @@
   },
   "homepage": "https://github.com/Ralex86/jsavance#readme",
   "dependencies": {
+    "@babel/core": "^7.3.3",
+    "vue-router": "^3.0.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-3": "^6.24.1",
     "body-parser": "^1.18.3",
+    "css-loader": "^2.1.0",
     "express": "^4.16.4",
+    "file-loader": "^3.0.1",
+    "multer": "^1.4.1",
     "mysql": "^2.16.0",
-    "prettier": "^1.16.4"
+    "prettier": "^1.16.4",
+    "vue": "^2.6.6",
+    "vue-loader": "^15.6.4",
+    "vue-template-compiler": "^2.6.6",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
   }
 }

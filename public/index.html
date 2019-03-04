@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>my-project</title>
+		<style>
+			#app {
+				font-family: 'Avenir', Helvetica, Arial, sans-serif;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+
+			}
+			body, html {
+				height: 100%;
+			}
+			body {
+				background: #f6f6f6;
+			}
+			a {
+				color: #6cc0e5;
+			}
+			a:visited{
+				color: #6cc0e5;
+			}
+		</style>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but my-project doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+		</noscript>
+		<div id="app">
+			<router-link to="/">Home</router-link>
+			<router-link to="/new">Add movie</router-link>
+			<!--<router-link to="/movie">Movie</router-link>-->
+			<!--<router-link to="/movie/edit">Go to Bar</router-link>-->
+			<!-- route outlet -->
+			<!-- component matched by the route will render here -->
+			<router-view></router-view>	
+		</div>
+    <script src="dist/build.js"></script>
+	</body>
+</html>
+
+

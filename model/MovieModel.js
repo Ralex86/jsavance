@@ -38,17 +38,17 @@ class MovieModel {
 
   static findOne(id) {
     const database = new Database(config);
-    const sql = `SELECT m.id, m.title, m.language, m.year, m.genre, d.name, d.birthdate,d.nationality FROM Movie m INNER JOIN Director d ON m.directorId = d.id WHERE m.id = ${id}`;
+    const sql = `SELECT m.id, m.title, m.language, m.year, m.genre, d.name, d.birthdate,d.nationality, m.poster FROM Movie m INNER JOIN Director d ON m.directorId = d.id WHERE m.id = ${id}`;
     return database.query(sql).then(rows => {
-      console.log('findone', rows);
       return new MovieModel(JSON.stringify(rows));
     });
   }
 
   static findAll() {
     const database = new Database(config);
-    const sql = `SELECT m.id, m.title, m.language, m.year, m.genre, d.name, d.birthdate,d.nationality FROM Movie m INNER JOIN Director d ON m.directorId = d.id `;
+    const sql = `SELECT m.id, m.title, m.language, m.year, m.genre, d.name, d.birthdate,d.nationality, m.poster FROM Movie m INNER JOIN Director d ON m.directorId = d.id`;
     return database.query(sql).then(rows => {
+      console.log(rows);
       return new MovieModel(JSON.stringify(rows));
     });
   }
@@ -63,7 +63,6 @@ class MovieModel {
   }
 
   static save(params) {
-    console.log('save', params);
     const {name, birthdate, nationality, title, year, language, genre} = params;
     const database = new Database(config);
     const sql = `insert into Director(name, birthdate, nationality)
@@ -96,12 +95,12 @@ values ("${name}","${birthdate}","${nationality}");
       year,
       language,
       genre,
+      poster,
     } = params;
-    const sql = `DELETE FROM Movie WHERE id = ${id};
-		insert into Director(name, birthdate, nationality)
-values ("${name}","${birthdate}","${nationality}");
-		insert into Movie(title, year, language, genre, directorid)
-		values ("${title}", "${year}", "${language}","${genre}", last_insert_id())`;
+    const sql = `UPDATE Movie 
+		SET title="${title}",year="${year}",language="${language}",genre="${genre}", poster="${poster}"
+		WHERE Movie.id = ${id};
+		`;
 
     return database.query(sql).then(rows => {
       console.log('database', rows);
@@ -112,6 +111,7 @@ values ("${name}","${birthdate}","${nationality}");
         year: year,
         language: language,
         genre: genre,
+        poster: poster,
       });
     });
   }

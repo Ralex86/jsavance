@@ -26,6 +26,7 @@ class MovieController {
   }
 
   async update(params) {
+    console.log(params);
     return await MovieModel.modifyOne(params);
   }
 }
