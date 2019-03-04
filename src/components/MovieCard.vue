@@ -16,6 +16,9 @@
       <div>{{ movie.year }}</div>
       <div>{{ movie.language }}</div>
       <div>{{ movie.genre }}</div>
+      <div>{{ movie.name }}</div>
+      <div>{{ movie.birthdate }}</div>
+      <div>{{ movie.nationality }}</div>
     </div>
   </div>
 </template>
