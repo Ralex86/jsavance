@@ -61,6 +61,14 @@
           Upload
         </button>
       </form>
+
+      <button
+        type="button"
+        class="submitButton"
+        v-on:click="deleteMovie($event)"
+      >
+        Delete
+      </button>
     </div>
     <div v-if="!dataExist">
       Le film nexiste pas
@@ -84,6 +92,25 @@ export default {
     };
   },
   methods: {
+    deleteMovie: function(event) {
+      event.preventDefault();
+      const url = `http://localhost:3000/api/v1/movies/${this.movie.id}`;
+      fetch(url, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          console.log('hey');
+          this.$router.push('/');
+        })
+        .catch(error => {});
+    },
     updateMovie: function(event) {
       event.preventDefault();
       const url = `http://localhost:3000/api/v1/movies`;

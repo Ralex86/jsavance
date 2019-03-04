@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 const config = {
-  host: '172.17.0.2',
+  host: 'localhost',
   database: 'moviedb',
   user: 'root',
   password: 'PASSWORD',
