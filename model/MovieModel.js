@@ -38,8 +38,21 @@ class MovieModel {
 
   static findOne(id) {
     const database = new Database(config);
-    const sql = `SELECT m.id, m.title, m.language, m.year, m.genre, d.name, d.birthdate,d.nationality, m.poster FROM Movie m INNER JOIN Director d ON m.directorId = d.id WHERE m.id = ${id}`;
-    return database.query(sql).then(rows => {
+    let sql = `
+			SELECT m.id, m.title, m.language, m.year, m.genre, d.name, d.birthdate,d.nationality, m.poster, avg(rate) as avgRate, count(*) as countRate 
+			FROM Movie m INNER JOIN Director d ON m.directorId = d.id 
+			JOIN Rating r ON m.id = r.movieId
+			WHERE m.id = ${id}
+		`;
+    return database.query(sql).then(async rows => {
+      //let sql = `SELECT avg(rate) as avgRate, count(*) as countRate FROM Rating r INNER JOIN Movie m ON m.id = r.movieId WHERE m.id = ${id} GROUP BY r.movieId`;
+
+      //const rating = await database.query(sql).then(rows => {
+      //return rows;
+      //});
+      //await console.log(rating);
+      console.log(rows);
+
       return new MovieModel(JSON.stringify(rows));
     });
   }

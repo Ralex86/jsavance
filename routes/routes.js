@@ -1,7 +1,9 @@
 module.exports = function(app) {
   const baseUrl = '/api/v1';
   const {MovieController} = require('../controllers/MovieController.js');
+  const {RatingController} = require('../controllers/RatingController.js');
   var movie_controller = new MovieController();
+  var rating_controller = new RatingController();
 
   //curl -X GET http://localhost:3000/api/v1/movies/
 
@@ -16,6 +18,11 @@ module.exports = function(app) {
   app.post(`${baseUrl}/movies`, async (req, res) => {
     const movie = await movie_controller.create(req.body);
     await res.end(JSON.stringify(movie.ressource));
+  });
+
+  app.post(`${baseUrl}/rating`, async (req, res) => {
+    const rating = await rating_controller.create(req.body);
+    await res.end(JSON.stringify(rating.ressource));
   });
 
   app.post('/poster', async (req, res) => {

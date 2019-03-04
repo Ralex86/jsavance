@@ -2,6 +2,28 @@
   <div class="detailScene">
     <div class="container" v-if="dataExist">
       <MovieCard :movie="movie" />
+      <form class="ratingForm">
+        <h5>
+          Rating
+        </h5>
+        <Rating :rate="movie.avgRate" :countRate="movie.countRate" />
+        <input
+          id="number"
+          type="number"
+          min="0"
+          max="5"
+          step="0.5"
+          i
+          v-model="userRating"
+        />
+        <button
+          type="button"
+          class="submitButton"
+          v-on:click="postUserRating($event)"
+        >
+          Submit rating
+        </button>
+      </form>
       <h5>
         Edit this movie
       </h5>
@@ -78,20 +100,42 @@
 
 <script>
 import MovieCard from '../components/MovieCard.vue';
+import Rating from '../components/Rating.vue';
 export default {
   name: 'app',
   props: ['id'],
   components: {
     MovieCard,
+    Rating,
   },
   data: function() {
     return {
       movie: null,
       dataExist: false,
       poster: null,
+      userRating: 0,
     };
   },
   methods: {
+    postUserRating: function(event) {
+      event.preventDefault();
+      const url = `http://localhost:3000/api/v1/rating`;
+      var formData = new FormData();
+      formData.append('rate', JSON.stringify(this.userRating));
+      formData.append('movieId', JSON.stringify(this.movie.id));
+      fetch(url, {
+        method: 'POST',
+        body: formData,
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          console.log('hey');
+          this.$router.go('/');
+        })
+        .catch(error => {});
+    },
     deleteMovie: function(event) {
       event.preventDefault();
       const url = `http://localhost:3000/api/v1/movies/${this.movie.id}`;
@@ -191,6 +235,11 @@ export default {
 .detailScene {
   display: flex;
   justify-content: center;
+}
+
+.ratingForm {
+  display: flex;
+  flex-direction: column;
 }
 
 .movieForm {
