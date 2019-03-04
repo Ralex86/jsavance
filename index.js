@@ -3,7 +3,8 @@ const multer = require('multer');
 const storage = multer.diskStorage({
   destination: './public/posters',
   filename: function(req, file, cb) {
-    cb(null, '123' + file.originalname);
+    const timestamp = new Date().getUTCMilliseconds();
+    cb(null, timestamp + file.originalname);
   },
 });
 

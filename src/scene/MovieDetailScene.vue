@@ -64,7 +64,7 @@
 
       <button
         type="button"
-        class="submitButton"
+        class="deleteButton"
         v-on:click="deleteMovie($event)"
       >
         Delete
@@ -238,6 +238,25 @@ export default {
   user-select: none;
 
   background-color: #6cc0e5;
+  padding: 8px 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-image: initial;
+  border-radius: 6px;
+  color: white;
+}
+
+.deleteButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  user-select: none;
+
+  background-color: #ff4136;
   padding: 8px 0;
   border-width: 1px;
   border-style: solid;

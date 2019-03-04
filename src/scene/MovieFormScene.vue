@@ -97,8 +97,8 @@ export default {
         body: JSON.stringify(this.movie),
       })
         .then(response => {
-          return response.json();
           this.$router.push('/');
+          return response.json();
         })
         .then(data => {
           console.log('hey');
