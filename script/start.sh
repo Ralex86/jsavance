@@ -1,3 +1,4 @@
+#!/bin/sh -x
 yarn install;
 node_modules/.bin/webpack --progress --hide-modules;
 docker run -p 3306:3306 --name docker-mysql -e MYSQL_ROOT_PASSWORD=PASSWORD -e MYSQL_DATABASE=moviedb -d mysql:5.7;
